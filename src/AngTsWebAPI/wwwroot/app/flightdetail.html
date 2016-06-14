@@ -1,0 +1,22 @@
+﻿<div class="container" *ngIf="f">
+	<div class="panel panel-primary">
+		<div class="panel-heading" *ngIf="f.ID">
+			<h4>Edit flight {{f.ID}}</h4>
+		</div>
+		<div class="panel-heading" *ngIf="!f.ID">
+			<h4>Add new flight</h4>
+		</div>
+		<div class="panel-body">
+			<form>
+				<label class="control-label">Flight No:</label>
+				<input type="text" required name="flight_no" [(ngModel)]="f.ID" size="16" />
+				<input type="datetime-local" required [(ngModel)]="f.ArrivalTimeLong" (change)="onChangeArrivalTime($event.target.value)" />
+				<input type="datetime-local" required [(ngModel)]="f.DepartureTimeLong" (change)="onChangeDepartTime($event.target.value)" />
+				<select id="flight_gateid" required [(ngModel)]="f.GateID">
+					<option *ngFor="#g of gates" value={{g.id}}>{{g.name}}</option>
+				</select>
+				<button class="btn btn-sm btn-primary" (click)="save()">Save</button>
+			</form>
+		</div>
+	</div>
+</div>

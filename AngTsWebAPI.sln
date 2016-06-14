@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{66A9602C-AD89-485D-A57B-4A3A2A6D19D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BD8E8C10-90D5-4718-840E-87856D128899}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AngTsWebAPI", "src\AngTsWebAPI\AngTsWebAPI.xproj", "{E211DFE8-1D9E-489F-9F35-1689D887CE1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E211DFE8-1D9E-489F-9F35-1689D887CE1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E211DFE8-1D9E-489F-9F35-1689D887CE1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E211DFE8-1D9E-489F-9F35-1689D887CE1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E211DFE8-1D9E-489F-9F35-1689D887CE1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E211DFE8-1D9E-489F-9F35-1689D887CE1A} = {66A9602C-AD89-485D-A57B-4A3A2A6D19D5}
+	EndGlobalSection
+EndGlobal

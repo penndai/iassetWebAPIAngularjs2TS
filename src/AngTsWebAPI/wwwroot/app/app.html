@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<label *ngIf="flights && flights.length==0">
+		Flight loading...
+	</label>
+	<div class="container">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th *ngFor="#h of headers">{{h}}</th>
+					<th>
+						<button id="add_row" class="btn btn-success pull-left" (click)="addNew()">Add flight</button>
+					</th>
+					<th>
+						<label class="control-label">Gate: </label>
+						<select id="gatefilter" (ngModel)="gatefilterid" (change)="onSelectGate($event.target.value)">
+							<option *ngFor="#g of gates" value={{g.id}}>{{g.name}}</option>
+						</select>
+					</th>
+				</tr>
+			</thead>
+			<tbody *ngIf="flights && flights.length>0">
+				<tr *ngFor="#f of flights">
+					<td>
+						{{f.ID}}
+					</td>
+					<td>
+						{{f.GateID}}
+					</td>
+					<td>
+						{{f.ArrivalTime}}
+					</td>
+					<td>
+						{{f.DepartureTime}}
+					</td>
+					<td><button class="btn btn-sm btn-info blue-stripe" (click)="editFlight(f)">Edit</button></td>
+
+					<td><button class="confirm-delete btn btn-sm btn-danger red-stripe" (click)="deleteFlight(f)">Cancel</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<flightdetail [f]="selectedFlight" (saved)="refreshList($event)"></flightdetail>
+	<!--<div class="container" *ngIf="selectedFlight">
+		<div class="panel panel-primary">
+			<div class="panel-heading" *ngIf="selectedFlight.ID">
+				<h4>Edit flight {{selectedFlight.ID}}</h4>
+			</div>
+			<div class="panel-heading" *ngIf="!selectedFlight.ID">
+				<h4>Add new flight</h4>
+			</div>
+			<div class="panel-body">
+				<form>
+					<label class="control-label">Flight No:</label>
+					<input type="text" required name="flight_no" [(ngModel)]="selectedFlight.ID" size="16" />
+
+					<input type="datetime-local" required [(ngModel)]="selectedFlight.DepartureTimeLong" />
+					<select id="flight_gateid" required [(ngModel)]="selectedFlight.GateID">
+						<option *ngFor="#g of gates" value={{g.id}}>{{g.name}}</option>
+					</select>
+					<button class="btn btn-sm btn-primary" (click)="saveFlight()">Save</button>
+				</form>
+			</div>
+		</div>
+	</div>-->
+
+	
+</body>
+</html>
