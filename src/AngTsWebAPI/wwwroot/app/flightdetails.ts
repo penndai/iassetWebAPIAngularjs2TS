@@ -1,4 +1,5 @@
 ﻿import { Component, EventEmitter, Input, OnInit, Output } from 'angular2/core';
+import {flightwithmsg} from './model/flightwithmsg';
 import { RouteParams } from "angular2/router";
 import { flight }        from './model/flight';
 import {gate} from './model/gate'
@@ -15,6 +16,8 @@ export class FlightDetailComponent implements OnInit {
 	error: any;
 	navigated = false; // true if navigated here
 	public gates: gate[];
+	public errormsg: string;
+	public errorcode: number;
 
 	constructor(
 		private flightservice: apiflightservice) {
@@ -30,6 +33,7 @@ export class FlightDetailComponent implements OnInit {
 			new gate(1, "Gate 1"),
 			new gate(2, "Gate 2")
 		];	
+		this.errorcode = 0;
 		if (this.f) {
 			//console.log("gate id:" + this.f.GateID);
 			//let id = +this.f.Identity;
@@ -56,9 +60,17 @@ export class FlightDetailComponent implements OnInit {
 	save() {
 		this.flightservice
 			.saveFlight(this.f)
-			.then(f => {
-				this.f = f; // saved flight, w/ id if new				
-				this.goBack(f);
+			.then(fmsg => {
+				if (fmsg.code != 0) {
+					this.errorcode = 1;
+					this.errormsg = fmsg.msg;
+				}
+				else {
+					this.errorcode = 0;
+					this.errormsg = '';
+					this.f = fmsg.flight; // saved flight, w/ id if new				
+					this.goBack(fmsg.flight);
+				}
 			})
 			.catch(error => this.error = error); // TODO: Display error message
 	}

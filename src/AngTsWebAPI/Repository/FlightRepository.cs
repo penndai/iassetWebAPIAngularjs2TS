@@ -42,6 +42,24 @@ namespace AngTsWebAPI.Repository
 			return FlightList.Where(x => x.Identity == id).SingleOrDefault();
 		}
 
+		public bool Validate(Flight flight)
+		{
+			bool value = true;
+			foreach (Flight f in FlightList)
+			{
+				var arriveTime = DateTime.Parse(f.ArrivalTime);
+				var ftime = DateTime.Parse(flight.ArrivalTimeLong);
+
+				if (ftime >= arriveTime.AddMinutes(-30) && ftime <= arriveTime.AddMinutes(30))
+				{
+					value = false;
+					break;
+				}
+			}
+
+			return value;
+		}
+
 		public List<Flight> FindByGate(int gateid)
 		{
 			List<Flight> rtn = new List<Flight>();

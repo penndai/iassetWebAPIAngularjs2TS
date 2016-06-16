@@ -16,6 +16,7 @@
 					<option *ngFor="#g of gates" value={{g.id}}>{{g.name}}</option>
 				</select>
 				<button class="btn btn-sm btn-primary" (click)="save()">Save</button>
+				<div class="alert alert-danger" *ngIf="errorcode >0">{{errormsg}}</div>
 			</form>
 		</div>
 	</div>

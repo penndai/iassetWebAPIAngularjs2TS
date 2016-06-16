@@ -41,9 +41,16 @@ namespace AngTsWebAPI.Controller
 				return new BadRequestResult();
 			}
 
-			flight.Identity = FlightRepo.GetNewIdentity();
-			FlightRepo.Add(flight);
-			return new JsonResult(flight);
+			var valid = FlightRepo.Validate(flight);
+
+			if (valid)
+			{
+				flight.Identity = FlightRepo.GetNewIdentity();
+				FlightRepo.Add(flight);
+				return new JsonResult(new { data = new { code = 0, msg = "success", flight = flight } });
+			}
+			else
+				return new JsonResult(new { data = new { code = 1, msg = "Arrival Time overlap", flight = flight } });
 			//return CreatedAtRoute("Get",new { Controller="PdService", id=flight.ID}, flight);
 		}
 
