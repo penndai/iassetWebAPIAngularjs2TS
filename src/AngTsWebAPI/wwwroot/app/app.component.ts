@@ -1,4 +1,4 @@
-﻿import {Component, OnInit} from "angular2/core";
+﻿import {Component, OnInit, ViewChild} from "angular2/core";
 import {ROUTER_DIRECTIVES} from "angular2/router";
 import {apiflightservice} from "./apiservice";
 import {FlightDetailComponent} from "./flightdetails";
@@ -17,12 +17,19 @@ declare var System: any;
 })
 
 export class AppComponent implements OnInit {
-	constructor(private service: apiflightservice) { }
+	constructor(private service: apiflightservice) {
+
+	}
 	public flights: flight[];
 	public headers: string[];
 	public selectedFlight: flight;
 	public gates: gate[];
 	public gatefilterid: number;
+
+	private timer;
+
+
+	@ViewChild(FlightDetailComponent) fldetail: FlightDetailComponent;
 
 	ngOnInit() {
 		this.headers = ['Flight No.', 'Gate','Arrival Time', 'DepartureTime'];
@@ -73,12 +80,16 @@ export class AppComponent implements OnInit {
 		this.selectedFlight.ID = f.ID;
 		this.selectedFlight.GateID = f.GateID;
 		//console.log(this.selectedFlight.GateID);
-		console.log(f);
+		//console.log(f);
 		this.selectedFlight.Identity = f.Identity;
 		this.selectedFlight.ArrivalTime = f.ArrivalTime;
 		this.selectedFlight.ArrivalTimeLong = f.ArrivalTimeLong;
 		this.selectedFlight.DepartureTime = f.DepartureTime;
 		this.selectedFlight.DepartureTimeLong = f.DepartureTimeLong;
+
+		var start = new Date().getTime();
+        
+		//this.fldetail.UpdateDateValue();
 	}
 
 	deleteFlight = function (f: flight) {

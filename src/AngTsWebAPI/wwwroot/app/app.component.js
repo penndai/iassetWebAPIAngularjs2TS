@@ -49,12 +49,14 @@ System.register(["angular2/core", "./apiservice", "./flightdetails", "angular2/s
                         this.selectedFlight.ID = f.ID;
                         this.selectedFlight.GateID = f.GateID;
                         //console.log(this.selectedFlight.GateID);
-                        console.log(f);
+                        //console.log(f);
                         this.selectedFlight.Identity = f.Identity;
                         this.selectedFlight.ArrivalTime = f.ArrivalTime;
                         this.selectedFlight.ArrivalTimeLong = f.ArrivalTimeLong;
                         this.selectedFlight.DepartureTime = f.DepartureTime;
                         this.selectedFlight.DepartureTimeLong = f.DepartureTimeLong;
+                        var start = new Date().getTime();
+                        //this.fldetail.UpdateDateValue();
                     };
                     this.deleteFlight = function (f) {
                         var _this = this;
@@ -110,6 +112,10 @@ System.register(["angular2/core", "./apiservice", "./flightdetails", "angular2/s
                     if (f === void 0) { f = null; }
                     this.getflightsJson();
                 };
+                __decorate([
+                    core_1.ViewChild(flightdetails_1.FlightDetailComponent), 
+                    __metadata('design:type', flightdetails_1.FlightDetailComponent)
+                ], AppComponent.prototype, "fldetail", void 0);
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: "app",

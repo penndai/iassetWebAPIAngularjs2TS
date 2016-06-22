@@ -8,6 +8,15 @@
 		</div>
 		<div class="panel-body">
 			<form>
+				<div class="form-group">
+					<div class='input-group date' id="datePicker">
+						<input type='text' class="form-control" [ngModel]="f.ArrivalTime" (blur)="onChangeArrivalTime($event.target.value)" />
+						<!--<input type='text' class="form-control" [ngModel]="f.ArrivalTime" (blur)="date = datePicker.value" />-->
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-time"></span>
+						</span>
+					</div>
+				</div>
 				<label class="control-label">Flight No:</label>
 				<input type="text" required name="flight_no" [(ngModel)]="f.ID" size="16" />
 				<input type="datetime-local" required [(ngModel)]="f.ArrivalTimeLong" (change)="onChangeArrivalTime($event.target.value)" />

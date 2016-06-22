@@ -28,11 +28,28 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
             }],
         execute: function() {
             FlightDetailComponent = (function () {
-                function FlightDetailComponent(flightservice) {
+                function FlightDetailComponent(elementRef, flightservice) {
+                    this.elementRef = elementRef;
                     this.flightservice = flightservice;
                     this.saved = new core_1.EventEmitter();
                     this.navigated = false; // true if navigated here
                 }
+                //@ViewChild('datePicker') dateTimePicker: ElementRef;
+                FlightDetailComponent.prototype.ngAfterViewChecked = function () {
+                    var el = this.elementRef.nativeElement;
+                    var dp = jQuery(el).find("#datePicker");
+                    if (jQuery(dp).length > 0) {
+                        jQuery(dp).datetimepicker({ format: 'LT' });
+                    }
+                };
+                FlightDetailComponent.prototype.UpdateDateValue = function () {
+                    var el = this.elementRef.nativeElement;
+                    var dp = jQuery(el).find("#datePicker");
+                    if (jQuery(dp).length > 0) {
+                        jQuery(dp).datetimepicker({ format: 'LT' });
+                    }
+                    //(this.dateTimePicker).datetimepicker({ format: 'LT' });
+                };
                 //constructor(
                 //	private flightservice: apiflightservice,
                 //	private routeParams: RouteParams) {
@@ -43,6 +60,8 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                         new gate_1.gate(2, "Gate 2")
                     ];
                     this.errorcode = 0;
+                    //console.log('update time picker on init');
+                    //(this.dateTimePicker.nativeElement).datetimepicker({ format: 'LT' });
                     if (this.f) {
                     }
                     else {
@@ -77,8 +96,11 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                         .catch(function (error) { return _this.error = error; }); // TODO: Display error message
                 };
                 FlightDetailComponent.prototype.onChangeArrivalTime = function (date) {
+                    console.log('on blur');
+                    console.log(date);
                     var d = new Date(date);
-                    console.log(new Date((d.setHours(d.getHours() + 0.5))));
+                    this.f.ArrivalTime = d;
+                    //console.log(new Date((d.setHours(d.getHours() + 0.5))));
                     this.f.DepartureTimeLong = new Date((d.setHours(d.getHours() + 1))).toISOString().slice(0, 16);
                 };
                 FlightDetailComponent.prototype.onChangeDepartTime = function (date) {
@@ -104,7 +126,7 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                         selector: 'flightdetail',
                         templateUrl: 'app/flightdetail.html'
                     }), 
-                    __metadata('design:paramtypes', [apiservice_1.apiflightservice])
+                    __metadata('design:paramtypes', [core_1.ElementRef, apiservice_1.apiflightservice])
                 ], FlightDetailComponent);
                 return FlightDetailComponent;
             }());

@@ -1,9 +1,10 @@
-﻿import { Component, EventEmitter, Input, OnInit, Output } from 'angular2/core';
+﻿import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef } from 'angular2/core';
 import {flightwithmsg} from './model/flightwithmsg';
 import { RouteParams } from "angular2/router";
 import { flight }        from './model/flight';
 import {gate} from './model/gate'
 import { apiflightservice } from './apiservice';
+declare var jQuery: any;
 
 @Component({
 	selector: 'flightdetail',
@@ -19,7 +20,28 @@ export class FlightDetailComponent implements OnInit {
 	public errormsg: string;
 	public errorcode: number;
 
+	//@ViewChild('datePicker') dateTimePicker: ElementRef;
+	ngAfterViewChecked() {
+		var el = this.elementRef.nativeElement;
+
+		var dp = jQuery(el).find("#datePicker");
+		if (jQuery(dp).length > 0) {
+			jQuery(dp).datetimepicker({ format: 'LT' });
+		}	
+	}
+
+	UpdateDateValue() {		
+		var el = this.elementRef.nativeElement;
+		
+		var dp = jQuery(el).find("#datePicker");
+		if (jQuery(dp).length > 0) {
+			jQuery(dp).datetimepicker({ format: 'LT' });
+		}		
+		
+		//(this.dateTimePicker).datetimepicker({ format: 'LT' });
+	}
 	constructor(
+		private elementRef: ElementRef,
 		private flightservice: apiflightservice) {
 	}
 
@@ -34,6 +56,10 @@ export class FlightDetailComponent implements OnInit {
 			new gate(2, "Gate 2")
 		];	
 		this.errorcode = 0;
+
+		//console.log('update time picker on init');
+		//(this.dateTimePicker.nativeElement).datetimepicker({ format: 'LT' });
+
 		if (this.f) {
 			//console.log("gate id:" + this.f.GateID);
 			//let id = +this.f.Identity;
@@ -76,8 +102,11 @@ export class FlightDetailComponent implements OnInit {
 	}
 
 	onChangeArrivalTime(date: string) {
+		console.log('on blur');
+		console.log(date);
 		var d = new Date(date);
-		console.log(new Date((d.setHours(d.getHours() + 0.5))));
+		this.f.ArrivalTime = d;
+		//console.log(new Date((d.setHours(d.getHours() + 0.5))));
 		this.f.DepartureTimeLong = new Date((d.setHours(d.getHours() + 1))).toISOString().slice(0, 16);
 	}
 

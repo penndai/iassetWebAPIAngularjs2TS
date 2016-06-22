@@ -57,6 +57,7 @@
     }
 
     var dateTimePicker = function (element, options) {
+    	console.log('in the date time picker');
         var picker = {},
             date = moment().startOf('d'),
             viewDate = date.clone(),
