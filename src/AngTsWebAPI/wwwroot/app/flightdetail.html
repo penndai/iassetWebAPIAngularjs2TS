@@ -1,30 +1,50 @@
 ﻿<div class="container" *ngIf="f">
 	<div class="panel panel-primary">
-		<div class="panel-heading" *ngIf="f.ID">
+		<div class="panel-heading" *ngIf="f && f.ID">
 			<h4>Edit flight {{f.ID}}</h4>
 		</div>
-		<div class="panel-heading" *ngIf="!f.ID">
+		<div class="panel-heading" *ngIf="f && !f.ID">
 			<h4>Add new flight</h4>
 		</div>
 		<div class="panel-body">
 			<form>
-				<div class="form-group">
+				<!--<div class="form-group">
 					<div class='input-group date' id="datePicker">
 						<input type='text' class="form-control" [ngModel]="f.ArrivalTime" (blur)="onChangeArrivalTime($event.target.value)" />
-						<!--<input type='text' class="form-control" [ngModel]="f.ArrivalTime" (blur)="date = datePicker.value" />-->
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-time"></span>
+						</span>
+					</div>
+				</div>-->
+				<div class="form-group form-group-lg">
+					<label class="control-label">Flight No:</label>
+					<input class="form-control" type="text" required name="flight_no" *ngIf="f" [(ngModel)]="f.ID" />
+				</div>
+				<div class="form-group form-group-lg">
+					<label class="control-label">Arrival Time:</label>
+					<div class='input-group date' id="atimedatePicker">
+						<input type='text' class="form-control" [ngModel]="f.ArrivalTime" (blur)="onChangeArrivalTime($event.target.value)" />
 						<span class="input-group-addon">
 							<span class="glyphicon glyphicon-time"></span>
 						</span>
 					</div>
 				</div>
-				<label class="control-label">Flight No:</label>
-				<input type="text" required name="flight_no" [(ngModel)]="f.ID" size="16" />
-				<input type="datetime-local" required [(ngModel)]="f.ArrivalTimeLong" (change)="onChangeArrivalTime($event.target.value)" />
-				<input type="datetime-local" required [(ngModel)]="f.DepartureTimeLong" (change)="onChangeDepartTime($event.target.value)" />
-				<select id="flight_gateid" required [(ngModel)]="f.GateID">
-					<option *ngFor="#g of gates" value={{g.id}}>{{g.name}}</option>
-				</select>
-				<button class="btn btn-sm btn-primary" (click)="save()">Save</button>
+				<div class="form-group form-group-lg">
+					<label class="control-label">Departure Time:</label>
+					<div class='input-group date' id="dtimedatePicker">
+						<input type='text' class="form-control" [ngModel]="f.DepartureTime" (blur)="onChangeDepartTime($event.target.value)" />
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-time"></span>
+						</span>
+					</div>
+				</div>				
+				<div class="form-group form-group-lg">
+					<label class="control-label">Gate:</label>
+					<select class="form-control" id="flight_gateid" *ngIf="f" required [(ngModel)]="f.GateID">
+						<option *ngFor="#g of gates" value={{g.id}}>{{g.name}}</option>
+					</select>
+				</div>
+				<button class="btn btn-lg btn-primary" (click)="save()">Save</button>
 				<div class="alert alert-danger" *ngIf="errorcode >0">{{errormsg}}</div>
 			</form>
 		</div>

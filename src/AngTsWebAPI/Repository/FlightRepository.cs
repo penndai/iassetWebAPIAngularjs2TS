@@ -72,7 +72,7 @@ namespace AngTsWebAPI.Repository
 			return rtn;
 		}
 
-		public IEnumerable<Flight> GetAll()
+		public IEnumerable<Flight> GetTodayAll()
 		{
 			return FlightList.Where(x => DateTime.Parse(x.ArrivalTime) >= DateTime.Now).ToList();
 		}

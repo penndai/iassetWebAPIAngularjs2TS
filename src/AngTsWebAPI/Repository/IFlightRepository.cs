@@ -10,7 +10,7 @@ namespace AngTsWebAPI.Repository
     {
 		void Add(Flight flight);
 		List<Flight> FindByGate(int gateid);
-		IEnumerable<Flight> GetAll();
+		IEnumerable<Flight> GetTodayAll();
 		Flight Find(int id);
 		void Remove(int id);
 		Flight Update(Flight f);

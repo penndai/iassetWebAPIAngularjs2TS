@@ -48,15 +48,11 @@ System.register(["angular2/core", "./apiservice", "./flightdetails", "angular2/s
                         this.selectedFlight = {};
                         this.selectedFlight.ID = f.ID;
                         this.selectedFlight.GateID = f.GateID;
-                        //console.log(this.selectedFlight.GateID);
-                        //console.log(f);
                         this.selectedFlight.Identity = f.Identity;
                         this.selectedFlight.ArrivalTime = f.ArrivalTime;
                         this.selectedFlight.ArrivalTimeLong = f.ArrivalTimeLong;
                         this.selectedFlight.DepartureTime = f.DepartureTime;
                         this.selectedFlight.DepartureTimeLong = f.DepartureTimeLong;
-                        var start = new Date().getTime();
-                        //this.fldetail.UpdateDateValue();
                     };
                     this.deleteFlight = function (f) {
                         var _this = this;

@@ -11,8 +11,7 @@ declare var System: any;
 
 @Component({
     selector: "app",
-    templateUrl: "/app/app.html",
-	//directives: [CORE_DIRECTIVES]
+    templateUrl: "/app/app.html",	
 	directives: [CORE_DIRECTIVES, FlightDetailComponent]
 })
 
@@ -42,8 +41,7 @@ export class AppComponent implements OnInit {
 		this.gatefilterid = -1;
 		this.getflightsJson();
 		
-		this.selectedFlight = null;
-		//this.getflights();		
+		this.selectedFlight = null;		
 	}
 
 	getflights() {
@@ -78,18 +76,12 @@ export class AppComponent implements OnInit {
 	editFlight = function (f: flight) {		
 		this.selectedFlight = <flight>{};
 		this.selectedFlight.ID = f.ID;
-		this.selectedFlight.GateID = f.GateID;
-		//console.log(this.selectedFlight.GateID);
-		//console.log(f);
+		this.selectedFlight.GateID = f.GateID;		
 		this.selectedFlight.Identity = f.Identity;
 		this.selectedFlight.ArrivalTime = f.ArrivalTime;
 		this.selectedFlight.ArrivalTimeLong = f.ArrivalTimeLong;
 		this.selectedFlight.DepartureTime = f.DepartureTime;
-		this.selectedFlight.DepartureTimeLong = f.DepartureTimeLong;
-
-		var start = new Date().getTime();
-        
-		//this.fldetail.UpdateDateValue();
+		this.selectedFlight.DepartureTimeLong = f.DepartureTimeLong;				
 	}
 
 	deleteFlight = function (f: flight) {
@@ -107,9 +99,7 @@ export class AppComponent implements OnInit {
 		}
 	}
 
-	onSelectGate(gateId: number) {
-		//console.log('gate id: ');
-		//console.log(gateId);
+	onSelectGate(gateId: number) {		
 		this.selectedFlight = null;
 		this.gatefilterid = gateId;
 		this.getflightsJson();

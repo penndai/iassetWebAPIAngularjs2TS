@@ -19,7 +19,7 @@ namespace AngTsWebAPI.Controller
 		[HttpGet]
 		public IActionResult Get()
 		{
-			return new JsonResult(new {flights= FlightRepo.GetAll() });
+			return new JsonResult(new {flights= FlightRepo.GetTodayAll() });
 		}
 
 		[HttpGet("{id}")]

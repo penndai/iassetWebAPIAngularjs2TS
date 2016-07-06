@@ -34,48 +34,41 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                     this.saved = new core_1.EventEmitter();
                     this.navigated = false; // true if navigated here
                 }
-                //@ViewChild('datePicker') dateTimePicker: ElementRef;
-                FlightDetailComponent.prototype.ngAfterViewChecked = function () {
+                FlightDetailComponent.prototype.initDateTimePicker = function () {
                     var el = this.elementRef.nativeElement;
-                    var dp = jQuery(el).find("#datePicker");
+                    var dp = jQuery(el).find("#atimedatePicker");
+                    var dtime = jQuery(el).find("#dtimedatePicker");
                     if (jQuery(dp).length > 0) {
-                        jQuery(dp).datetimepicker({ format: 'LT' });
+                        jQuery(dp).datetimepicker();
+                        //jQuery(dp).datetimepicker({ format: 'LT' });
+                        var arDate = new Date(this.f.ArrivalTime.toString());
+                        //set the selected flight arrival time
+                        jQuery(dp)
+                            .data("DateTimePicker")
+                            .date(new Date(arDate.getFullYear(), arDate.getMonth(), arDate.getDate(), arDate.getHours(), arDate.getMinutes()));
+                    }
+                    if (jQuery(dtime).length > 0) {
+                        //jQuery(dtime).datetimepicker({ format: 'LT' });
+                        jQuery(dtime).datetimepicker();
+                        var arDate = new Date(this.f.DepartureTime.toString());
+                        //set the selected flight departure time
+                        jQuery(dtime)
+                            .data("DateTimePicker")
+                            .date(new Date(arDate.getFullYear(), arDate.getMonth(), arDate.getDate(), arDate.getHours(), arDate.getMinutes()));
                     }
                 };
-                FlightDetailComponent.prototype.UpdateDateValue = function () {
-                    var el = this.elementRef.nativeElement;
-                    var dp = jQuery(el).find("#datePicker");
-                    if (jQuery(dp).length > 0) {
-                        jQuery(dp).datetimepicker({ format: 'LT' });
-                    }
-                    //(this.dateTimePicker).datetimepicker({ format: 'LT' });
+                FlightDetailComponent.prototype.ngOnChanges = function (changes) {
+                    var _this = this;
+                    setTimeout(function () {
+                        _this.initDateTimePicker();
+                    }, 0);
                 };
-                //constructor(
-                //	private flightservice: apiflightservice,
-                //	private routeParams: RouteParams) {
-                //}
                 FlightDetailComponent.prototype.ngOnInit = function () {
                     this.gates = [
                         new gate_1.gate(1, "Gate 1"),
                         new gate_1.gate(2, "Gate 2")
                     ];
                     this.errorcode = 0;
-                    //console.log('update time picker on init');
-                    //(this.dateTimePicker.nativeElement).datetimepicker({ format: 'LT' });
-                    if (this.f) {
-                    }
-                    else {
-                    }
-                    //if (this.routeParams.get('id') !== null) {
-                    //	let id = +this.routeParams.get('id');
-                    //	this.navigated = true;
-                    //	this.flightservice.getflight(id)
-                    //		.then(f => { this.f = f; });
-                    //	console.log(this.f);
-                    //} else {
-                    //	this.navigated = false;
-                    //	this.f = new flight();
-                    //}
                 };
                 FlightDetailComponent.prototype.save = function () {
                     var _this = this;
@@ -95,13 +88,42 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                     })
                         .catch(function (error) { return _this.error = error; }); // TODO: Display error message
                 };
+                FlightDetailComponent.prototype.ParseDateCustom = function (time) {
+                    var hours = Number(time.match(/^(\d+)/)[1]);
+                    var minutes = Number(time.match(/:(\d+)/)[1]);
+                    var AMPM = time.match(/\s(.*)$/)[1];
+                    if (AMPM == "PM" && hours < 12)
+                        hours = hours + 12;
+                    if (AMPM == "AM" && hours == 12)
+                        hours = hours - 12;
+                    var sHours = hours.toString();
+                    var sMinutes = minutes.toString();
+                    if (hours < 10)
+                        sHours = "0" + sHours;
+                    if (minutes < 10)
+                        sMinutes = "0" + sMinutes;
+                    return (sHours + ':' + sMinutes);
+                };
                 FlightDetailComponent.prototype.onChangeArrivalTime = function (date) {
-                    console.log('on blur');
-                    console.log(date);
-                    var d = new Date(date);
-                    this.f.ArrivalTime = d;
+                    var el = this.elementRef.nativeElement;
+                    var dp = jQuery(el).find("#atimedatePicker");
+                    var d = jQuery(dp)
+                        .data("DateTimePicker")
+                        .date();
+                    //var customtime = this.ParseDateCustom(date);
+                    //d = new Date(customtime.getFullYear(), customtime.getMonth(), d.getDate(), Number(customtime.split(':')[0]), Number(customtime.split(':')[1]));
+                    console.log(d.toDate());
+                    //d = d.toDate();
+                    //d = new Date(
+                    //	d.getFullYear(),
+                    //	d.getMonth() + 1,
+                    //	d.getDate(),
+                    //	d.getHours(),
+                    //	d.getMinutes()
+                    //);
+                    this.f.ArrivalTime = d.format("MM/DD/YYYY hh:mm A");
                     //console.log(new Date((d.setHours(d.getHours() + 0.5))));
-                    this.f.DepartureTimeLong = new Date((d.setHours(d.getHours() + 1))).toISOString().slice(0, 16);
+                    //this.f.DepartureTimeLong = new Date((d.setHours(d.getHours() + 1))).toISOString().slice(0, 16);
                 };
                 FlightDetailComponent.prototype.onChangeDepartTime = function (date) {
                     var d = new Date(date);
