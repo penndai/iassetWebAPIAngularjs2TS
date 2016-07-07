@@ -67,7 +67,10 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                         new gate_1.gate(1, "Gate 1"),
                         new gate_1.gate(2, "Gate 2")
                     ];
+                    //init error code and message
                     this.errorcode = 0;
+                    this.timeError = false;
+                    this.timeValidation = '';
                 };
                 FlightDetailComponent.prototype.save = function () {
                     var _this = this;
@@ -110,6 +113,13 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                         .data("DateTimePicker")
                         .date();
                     this.f.ArrivalTime = d.format("MM/DD/YYYY h:mm A");
+                    this.timeError = new Date(this.f.ArrivalTime.toString()) >= new Date(this.f.DepartureTime.toString());
+                    if (this.timeError) {
+                        this.timeValidation = "Arrival Time should before departure time.";
+                    }
+                    else {
+                        this.timeValidation = '';
+                    }
                 };
                 FlightDetailComponent.prototype.onChangeDepartTime = function (date) {
                     var el = this.elementRef.nativeElement;
@@ -118,6 +128,10 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                         .data("DateTimePicker")
                         .date();
                     this.f.DepartureTime = d.format("MM/DD/YYYY h:mm A");
+                    this.timeError = new Date(this.f.ArrivalTime.toString()) >= new Date(this.f.DepartureTime.toString());
+                    if (this.timeError) {
+                        this.timeValidation = "Arrival Time should before departure time.";
+                    }
                 };
                 FlightDetailComponent.prototype.goBack = function (savedFlight) {
                     if (savedFlight === void 0) { savedFlight = null; }

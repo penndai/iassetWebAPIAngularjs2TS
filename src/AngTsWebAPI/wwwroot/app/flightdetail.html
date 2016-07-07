@@ -37,6 +37,9 @@
 							<span class="glyphicon glyphicon-time"></span>
 						</span>
 					</div>
+				</div>
+				<div class="alert alert-danger" *ngIf="timeError">
+					{{timeValidation}}
 				</div>				
 				<div class="form-group form-group-lg">
 					<label class="control-label">Gate:</label>

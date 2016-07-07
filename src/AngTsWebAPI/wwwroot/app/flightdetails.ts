@@ -20,6 +20,8 @@ export class FlightDetailComponent implements OnInit {
 	public gates: gate[];
 	public errormsg: string;
 	public errorcode: number;
+	public timeValidation: string;
+	public timeError: boolean;
 
 	initDateTimePicker() {
 		var el = this.elementRef.nativeElement;
@@ -72,7 +74,11 @@ export class FlightDetailComponent implements OnInit {
 			new gate(1, "Gate 1"),
 			new gate(2, "Gate 2")
 		];	
+
+		//init error code and message
 		this.errorcode = 0;		
+		this.timeError = false;
+		this.timeValidation = '';
 	}
 
 	save() {
@@ -114,7 +120,15 @@ export class FlightDetailComponent implements OnInit {
 			.data("DateTimePicker")
 			.date();	
 			
-		this.f.ArrivalTime = d.format("MM/DD/YYYY h:mm A");		
+		this.f.ArrivalTime = d.format("MM/DD/YYYY h:mm A");
+
+		this.timeError = new Date(this.f.ArrivalTime.toString()) >= new Date(this.f.DepartureTime.toString());
+		if (this.timeError) {
+			this.timeValidation = "Arrival Time should before departure time.";
+		}
+		else {
+			this.timeValidation = '';
+		}
 	}
 
 	onChangeDepartTime(date: string) {
@@ -125,6 +139,10 @@ export class FlightDetailComponent implements OnInit {
 			.date();
 
 		this.f.DepartureTime = d.format("MM/DD/YYYY h:mm A");
+		this.timeError = new Date(this.f.ArrivalTime.toString()) >= new Date(this.f.DepartureTime.toString());
+		if (this.timeError) {
+			this.timeValidation = "Arrival Time should before departure time.";
+		}
 	}
 
 	goBack(savedFlight: flight = null) {
