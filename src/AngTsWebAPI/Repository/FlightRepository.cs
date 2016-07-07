@@ -14,16 +14,26 @@ namespace AngTsWebAPI.Repository
 		{
 			if (FlightList.Count == 0)
 			{
-				FlightList.Add(new Flight() { Identity = 1, ID = "F1", GateID = 1, ArrivalTime = string.Format("{0:g}", DateTime.Now), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(0.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(0.5)) });
-				FlightList.Add(new Flight() { Identity = 2, ID = "F2", GateID = 2, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddHours(1)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(1)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(1.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(1.5)) });
-				FlightList.Add(new Flight() { Identity = 3, ID = "F1", GateID = 1, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddMinutes(10)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddMinutes(10)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(0.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(0.5)) });
-				FlightList.Add(new Flight() { Identity = 4, ID = "F2", GateID = 2, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddMinutes(15)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddMinutes(10)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(1.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(1.5)) });
-				FlightList.Add(new Flight() { Identity = 5, ID = "F1", GateID = 1, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddMinutes(20)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddMinutes(20)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(0.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(0.5)) });
-				FlightList.Add(new Flight() { Identity = 6, ID = "F2", GateID = 2, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddMinutes(25)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddMinutes(25)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(1.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(1.5)) });
-				FlightList.Add(new Flight() { Identity = 7, ID = "F1", GateID = 1, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddMinutes(30)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddMinutes(30)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(0.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(0.5)) });
-				FlightList.Add(new Flight() { Identity = 8, ID = "F2", GateID = 2, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddMinutes(35)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddMinutes(35)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(1.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(1.5)) });
-				FlightList.Add(new Flight() { Identity = 9, ID = "F1", GateID = 1, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddMinutes(40)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddMinutes(40)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(1)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(1)) });
-				FlightList.Add(new Flight() { Identity = 10, ID = "F2", GateID = 2, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddMinutes(45)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddMinutes(45)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(1.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(1.5)) });
+				FlightList.Add(
+					new Flight()
+					{
+						Identity = 1,
+						ID = "F11",
+						GateID = 1,
+						ArrivalTime = string.Format("{0:g}", DateTime.Now),
+						ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now),
+						DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(0.5)),
+						DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(0.5))
+					});
+				FlightList.Add(new Flight() { Identity = 2, ID = "F12", GateID = 2, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddHours(1)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(1)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(1.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(1.5)) });
+				FlightList.Add(new Flight() { Identity = 3, ID = "F13", GateID = 1, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddHours(1.5)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(1.5)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(2)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(2)) });
+				FlightList.Add(new Flight() { Identity = 4, ID = "F14", GateID = 2, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddHours(2)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(2)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(2.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(2.5)) });
+				FlightList.Add(new Flight() { Identity = 5, ID = "F21", GateID = 1, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddHours(2.5)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(2.5)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(3)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(3)) });
+				FlightList.Add(new Flight() { Identity = 6, ID = "F22", GateID = 2, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddHours(3)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(3)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(3.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(3.5)) });
+				FlightList.Add(new Flight() { Identity = 7, ID = "F23", GateID = 1, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddHours(3.5)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(3.5)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(4)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(4)) });
+				FlightList.Add(new Flight() { Identity = 8, ID = "F24", GateID = 2, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddHours(4)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(4)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(4.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(4.5)) });
+				FlightList.Add(new Flight() { Identity = 9, ID = "F25", GateID = 1, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddHours(4.5)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(4.5)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(5)) });
+				FlightList.Add(new Flight() { Identity = 10, ID = "F26", GateID = 2, ArrivalTime = string.Format("{0:g}", DateTime.Now.AddHours(5)), ArrivalTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(5)), DepartureTimeLong = string.Format("{0:yyyy-MM-ddThh:mm}", DateTime.Now.AddHours(5.5)), DepartureTime = string.Format("{0:g}", DateTime.Now.AddHours(5.5)) });
 			}
 		}
 
@@ -42,17 +52,19 @@ namespace AngTsWebAPI.Repository
 			return FlightList.Where(x => x.Identity == id).SingleOrDefault();
 		}
 
-		public bool Validate(Flight flight)
+		public bool Validate(Flight flight, out string errorMsg)
 		{
 			bool value = true;
+			errorMsg = string.Empty;
 			foreach (Flight f in FlightList)
 			{
 				var arriveTime = DateTime.Parse(f.ArrivalTime);
-				var ftime = DateTime.Parse(flight.ArrivalTimeLong);
+				var ftime = DateTime.Parse(flight.ArrivalTime);
 
 				if (ftime >= arriveTime.AddMinutes(-30) && ftime <= arriveTime.AddMinutes(30))
 				{
 					value = false;
+					errorMsg = string.Format("flight: {0}", f.ID);
 					break;
 				}
 			}

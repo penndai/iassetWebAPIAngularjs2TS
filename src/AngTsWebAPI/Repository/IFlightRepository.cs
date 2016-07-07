@@ -16,7 +16,7 @@ namespace AngTsWebAPI.Repository
 		Flight Update(Flight f);
 		int GetNewIdentity();
 
-		bool Validate(Flight flight);
+		bool Validate(Flight flight, out string errorMsg);
 
 	}
 }

@@ -3,7 +3,7 @@
 	ID: string;
 	GateID: number;
 	DepartureTime: Date;
-	DepartureTimeLong: string;
+	//DepartureTimeLong: string;
 	ArrivalTime: Date;
-	ArrivalTimeLong: string;
+	//ArrivalTimeLong: string;
 }

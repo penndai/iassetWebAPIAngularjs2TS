@@ -14,6 +14,7 @@ declare var jQuery: any;
 export class FlightDetailComponent implements OnInit {
 	@Input() f: flight;
 	@Output() saved = new EventEmitter();
+	@Output() edited = new EventEmitter();
 	error: any;
 	navigated = false; // true if navigated here
 	public gates: gate[];
@@ -112,17 +113,18 @@ export class FlightDetailComponent implements OnInit {
 		var d = jQuery(dp)
 			.data("DateTimePicker")
 			.date();	
-
-		console.log(d.toDate());
-		
-		this.f.ArrivalTime = d.format("MM/DD/YYYY hh:mm A");		
+			
+		this.f.ArrivalTime = d.format("MM/DD/YYYY h:mm A");		
 	}
 
 	onChangeDepartTime(date: string) {
 		var el = this.elementRef.nativeElement;
 		var dp = jQuery(el).find("#dtimedatePicker");
-		var d = jQuery(dp);
-		this.f.DepartureTime = d.format("MM/DD/YYYY hh:mm A");
+		var d = jQuery(dp)
+			.data("DateTimePicker")
+			.date();
+
+		this.f.DepartureTime = d.format("MM/DD/YYYY h:mm A");
 	}
 
 	goBack(savedFlight: flight = null) {

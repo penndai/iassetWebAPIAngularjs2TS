@@ -85,15 +85,15 @@ System.register(["rxjs/Rx", "angular2/http", "angular2/core"], function(exports_
                     return this.http
                         .put(url, JSON.stringify(f), { headers: headers })
                         .toPromise()
-                        .then(function () { return f; })
+                        .then(function (res) { return res.json().data; })
                         .catch(this.handleError);
                 };
                 apiflightservice.prototype.saveFlight = function (f) {
                     if (f.Identity > 0) {
-                        f.ArrivalTime = new Date(new Date(f.ArrivalTimeLong.toString()).getFullYear(), new Date(f.ArrivalTimeLong.toString()).getMonth(), new Date(f.ArrivalTimeLong.toString()).getDate(), new Date(f.ArrivalTimeLong.toString()).getHours(), new Date(f.ArrivalTimeLong.toString()).getMinutes());
-                        f.DepartureTime = new Date(new Date(f.DepartureTimeLong.toString()).getFullYear(), new Date(f.DepartureTimeLong.toString()).getMonth(), new Date(f.DepartureTimeLong.toString()).getDate(), new Date(f.DepartureTimeLong.toString()).getHours(), new Date(f.DepartureTimeLong.toString()).getMinutes());
-                        console.log(f);
-                        return this.put(f);
+                        //f.ArrivalTime = new Date(new Date(f.ArrivalTimeLong.toString()).getFullYear(), new Date(f.ArrivalTimeLong.toString()).getMonth(), new Date(f.ArrivalTimeLong.toString()).getDate(), new Date(f.ArrivalTimeLong.toString()).getHours(), new Date(f.ArrivalTimeLong.toString()).getMinutes());
+                        //f.DepartureTime = new Date(new Date(f.DepartureTimeLong.toString()).getFullYear(), new Date(f.DepartureTimeLong.toString()).getMonth(), new Date(f.DepartureTimeLong.toString()).getDate(), new Date(f.DepartureTimeLong.toString()).getHours(), new Date(f.DepartureTimeLong.toString()).getMinutes());
+                        var rtnFlightWithMsg = this.put(f);
+                        return rtnFlightWithMsg;
                     }
                     else {
                         return this.post(f);

@@ -32,6 +32,7 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                     this.elementRef = elementRef;
                     this.flightservice = flightservice;
                     this.saved = new core_1.EventEmitter();
+                    this.edited = new core_1.EventEmitter();
                     this.navigated = false; // true if navigated here
                 }
                 FlightDetailComponent.prototype.initDateTimePicker = function () {
@@ -40,7 +41,6 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                     var dtime = jQuery(el).find("#dtimedatePicker");
                     if (jQuery(dp).length > 0) {
                         jQuery(dp).datetimepicker();
-                        //jQuery(dp).datetimepicker({ format: 'LT' });
                         var arDate = new Date(this.f.ArrivalTime.toString());
                         //set the selected flight arrival time
                         jQuery(dp)
@@ -48,7 +48,6 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                             .date(new Date(arDate.getFullYear(), arDate.getMonth(), arDate.getDate(), arDate.getHours(), arDate.getMinutes()));
                     }
                     if (jQuery(dtime).length > 0) {
-                        //jQuery(dtime).datetimepicker({ format: 'LT' });
                         jQuery(dtime).datetimepicker();
                         var arDate = new Date(this.f.DepartureTime.toString());
                         //set the selected flight departure time
@@ -110,24 +109,15 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                     var d = jQuery(dp)
                         .data("DateTimePicker")
                         .date();
-                    //var customtime = this.ParseDateCustom(date);
-                    //d = new Date(customtime.getFullYear(), customtime.getMonth(), d.getDate(), Number(customtime.split(':')[0]), Number(customtime.split(':')[1]));
-                    console.log(d.toDate());
-                    //d = d.toDate();
-                    //d = new Date(
-                    //	d.getFullYear(),
-                    //	d.getMonth() + 1,
-                    //	d.getDate(),
-                    //	d.getHours(),
-                    //	d.getMinutes()
-                    //);
-                    this.f.ArrivalTime = d.format("MM/DD/YYYY hh:mm A");
-                    //console.log(new Date((d.setHours(d.getHours() + 0.5))));
-                    //this.f.DepartureTimeLong = new Date((d.setHours(d.getHours() + 1))).toISOString().slice(0, 16);
+                    this.f.ArrivalTime = d.format("MM/DD/YYYY h:mm A");
                 };
                 FlightDetailComponent.prototype.onChangeDepartTime = function (date) {
-                    var d = new Date(date);
-                    this.f.ArrivalTimeLong = new Date((d.setHours(d.getHours() - 1))).toISOString().slice(0, 16);
+                    var el = this.elementRef.nativeElement;
+                    var dp = jQuery(el).find("#dtimedatePicker");
+                    var d = jQuery(dp)
+                        .data("DateTimePicker")
+                        .date();
+                    this.f.DepartureTime = d.format("MM/DD/YYYY h:mm A");
                 };
                 FlightDetailComponent.prototype.goBack = function (savedFlight) {
                     if (savedFlight === void 0) { savedFlight = null; }
@@ -143,6 +133,10 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                     core_1.Output(), 
                     __metadata('design:type', Object)
                 ], FlightDetailComponent.prototype, "saved", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], FlightDetailComponent.prototype, "edited", void 0);
                 FlightDetailComponent = __decorate([
                     core_1.Component({
                         selector: 'flightdetail',

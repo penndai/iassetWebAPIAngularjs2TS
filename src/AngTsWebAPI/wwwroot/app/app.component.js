@@ -42,7 +42,7 @@ System.register(["angular2/core", "./apiservice", "./flightdetails", "angular2/s
                         this.selectedFlight.ArrivalTimeLong = new Date().toISOString();
                         var d = new Date();
                         this.selectedFlight.DepartureTime = new Date((d.setHours(d.getHours() + 0.5))).toString();
-                        this.selectedFlight.DepartureTimeLong = new Date((d.setHours(d.getHours() + 0.5))).toISOString();
+                        //this.selectedFlight.DepartureTimeLong = new Date((d.setHours(d.getHours() + 0.5))).toISOString();
                     };
                     this.editFlight = function (f) {
                         this.selectedFlight = {};
@@ -52,7 +52,7 @@ System.register(["angular2/core", "./apiservice", "./flightdetails", "angular2/s
                         this.selectedFlight.ArrivalTime = f.ArrivalTime;
                         this.selectedFlight.ArrivalTimeLong = f.ArrivalTimeLong;
                         this.selectedFlight.DepartureTime = f.DepartureTime;
-                        this.selectedFlight.DepartureTimeLong = f.DepartureTimeLong;
+                        //this.selectedFlight.DepartureTimeLong = f.DepartureTimeLong;				
                     };
                     this.deleteFlight = function (f) {
                         var _this = this;
@@ -80,7 +80,6 @@ System.register(["angular2/core", "./apiservice", "./flightdetails", "angular2/s
                     this.gatefilterid = -1;
                     this.getflightsJson();
                     this.selectedFlight = null;
-                    //this.getflights();		
                 };
                 AppComponent.prototype.getflights = function () {
                     var _this = this;
@@ -98,8 +97,6 @@ System.register(["angular2/core", "./apiservice", "./flightdetails", "angular2/s
                     this.service.getFlightsJson(this.gatefilterid).subscribe(function (x) { return _this.flights = x; }, function (error) { return console.log(error); });
                 };
                 AppComponent.prototype.onSelectGate = function (gateId) {
-                    //console.log('gate id: ');
-                    //console.log(gateId);
                     this.selectedFlight = null;
                     this.gatefilterid = gateId;
                     this.getflightsJson();
@@ -116,7 +113,6 @@ System.register(["angular2/core", "./apiservice", "./flightdetails", "angular2/s
                     core_1.Component({
                         selector: "app",
                         templateUrl: "/app/app.html",
-                        //directives: [CORE_DIRECTIVES]
                         directives: [core_directives_1.CORE_DIRECTIVES, flightdetails_1.FlightDetailComponent]
                     }), 
                     __metadata('design:paramtypes', [apiservice_1.apiflightservice])

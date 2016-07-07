@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using System.Globalization;
 
 namespace AngTsWebAPI.Controller
 {
@@ -40,8 +41,13 @@ namespace AngTsWebAPI.Controller
 			{
 				return new BadRequestResult();
 			}
+			string errorMsg = string.Empty;
 
-			var valid = FlightRepo.Validate(flight);
+			//DateTime arrivalTime = DateTime.ParseExact(flight.ArrivalTime, "ddd MMM dd yyyy HH:mm:ss 'GMT'K", CultureInfo.InvariantCulture);
+			DateTime arrivalTime = DateTime.Parse(flight.ArrivalTime);
+			flight.ArrivalTime = string.Format("{0:g}", arrivalTime);
+
+			var valid = FlightRepo.Validate(flight, out errorMsg);
 
 			if (valid)
 			{
@@ -50,7 +56,7 @@ namespace AngTsWebAPI.Controller
 				return new JsonResult(new { data = new { code = 0, msg = "success", flight = flight } });
 			}
 			else
-				return new JsonResult(new { data = new { code = 1, msg = "Arrival Time overlap", flight = flight } });
+				return new JsonResult(new { data = new { code = 1, msg = string.Format("Arrival Time overlap with {0}", errorMsg), flight = flight } });
 			//return CreatedAtRoute("Get",new { Controller="PdService", id=flight.ID}, flight);
 		}
 
@@ -59,13 +65,24 @@ namespace AngTsWebAPI.Controller
 		{	
 			if (flight == null)
 				return new BadRequestResult();
+			string errorMsg = string.Empty;
+
+			DateTime arrivalTime = DateTime.ParseExact(flight.ArrivalTime, "ddd MMM dd yyyy HH:mm:ss 'GMT'K", CultureInfo.InvariantCulture);
+			flight.ArrivalTime = string.Format("{0:yyyy-MM-ddThh:mm}", arrivalTime);
 
 			var data = FlightRepo.Find(id);	
 			if (data != null)
 			{
-				//flight.DepartureTime = flight.DepartureTimeLong;
-				flight = FlightRepo.Update(flight);
-				return new JsonResult(flight);
+				var valid = FlightRepo.Validate(flight, out errorMsg);
+				if (valid)
+				{
+					flight = FlightRepo.Update(flight);
+					return new JsonResult(new { data = new { code = 0, msg = "success", flight = flight } });
+				}
+				else
+				{
+					return new JsonResult(new { data = new { code = 1, msg = string.Format("Arrival Time overlap {0}", errorMsg), flight = flight } });
+				}				
 			}
 			else
 				return new HttpNotFoundResult();
@@ -75,7 +92,6 @@ namespace AngTsWebAPI.Controller
 		public void Delete(int id)
 		{
 			FlightRepo.Remove(id);
-
 		}
     }
 }

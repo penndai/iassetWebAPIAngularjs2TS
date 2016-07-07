@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
 
 		var d = new Date();
 		this.selectedFlight.DepartureTime = new Date((d.setHours(d.getHours() + 0.5))).toString();
-		this.selectedFlight.DepartureTimeLong = new Date((d.setHours(d.getHours() + 0.5))).toISOString();
+		//this.selectedFlight.DepartureTimeLong = new Date((d.setHours(d.getHours() + 0.5))).toISOString();
 	}
 
 	editFlight = function (f: flight) {		
@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
 		this.selectedFlight.ArrivalTime = f.ArrivalTime;
 		this.selectedFlight.ArrivalTimeLong = f.ArrivalTimeLong;
 		this.selectedFlight.DepartureTime = f.DepartureTime;
-		this.selectedFlight.DepartureTimeLong = f.DepartureTimeLong;				
+		//this.selectedFlight.DepartureTimeLong = f.DepartureTimeLong;				
 	}
 
 	deleteFlight = function (f: flight) {
