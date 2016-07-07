@@ -7,7 +7,7 @@
 			<h4>Add new flight</h4>
 		</div>
 		<div class="panel-body">
-			<form>
+			<form #formControl ="ngForm">
 				<!--<div class="form-group">
 					<div class='input-group date' id="datePicker">
 						<input type='text' class="form-control" [ngModel]="f.ArrivalTime" (blur)="onChangeArrivalTime($event.target.value)" />
@@ -18,12 +18,12 @@
 				</div>-->
 				<div class="form-group form-group-lg">
 					<label class="control-label">Flight No:</label>
-					<input class="form-control" type="text" required name="flight_no" *ngIf="f" [(ngModel)]="f.ID" />
+					<input class="form-control" type="text" required ngControl="flightno" name="flight_no" *ngIf="f" [(ngModel)]="f.ID" />
 				</div>
 				<div class="form-group form-group-lg">
 					<label class="control-label">Arrival Time:</label>
 					<div class='input-group date' id="atimedatePicker">
-						<input type='text' class="form-control" [ngModel]="f.ArrivalTime" (blur)="onChangeArrivalTime($event.target.value)" />
+						<input type='text' class="form-control" required [ngModel]="f.ArrivalTime" (blur)="onChangeArrivalTime($event.target.value)" />
 						<span class="input-group-addon">
 							<span class="glyphicon glyphicon-time"></span>
 						</span>
@@ -32,7 +32,7 @@
 				<div class="form-group form-group-lg">
 					<label class="control-label">Departure Time:</label>
 					<div class='input-group date' id="dtimedatePicker">
-						<input type='text' class="form-control" [ngModel]="f.DepartureTime" (blur)="onChangeDepartTime($event.target.value)" />
+						<input type='text' required class="form-control" [ngModel]="f.DepartureTime" (blur)="onChangeDepartTime($event.target.value)" />
 						<span class="input-group-addon">
 							<span class="glyphicon glyphicon-time"></span>
 						</span>
@@ -47,7 +47,7 @@
 						<option *ngFor="#g of gates" value={{g.id}}>{{g.name}}</option>
 					</select>
 				</div>
-				<button class="btn btn-lg btn-primary" (click)="save()">Save</button>
+				<button class="btn btn-lg btn-primary" [disabled]="!formControl.form.valid || buttonStateDisable()" (click)="save()">Save</button>
 				<div class="alert alert-danger" *ngIf="errorcode >0">{{errormsg}}</div>
 			</form>
 		</div>

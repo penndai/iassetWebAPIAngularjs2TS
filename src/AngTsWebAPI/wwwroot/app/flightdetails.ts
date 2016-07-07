@@ -144,7 +144,13 @@ export class FlightDetailComponent implements OnInit {
 			this.timeValidation = "Arrival Time should before departure time.";
 		}
 	}
-
+	buttonStateDisable() {
+		if (this.errorcode != 0 || this.timeError) {
+			return true;
+		}
+		else
+			return false;
+	}
 	goBack(savedFlight: flight = null) {
 		// clear f and hide edit flight detail
 		this.f = null;

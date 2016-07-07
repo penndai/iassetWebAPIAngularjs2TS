@@ -133,6 +133,13 @@ System.register(['angular2/core', './model/flight', './model/gate', './apiservic
                         this.timeValidation = "Arrival Time should before departure time.";
                     }
                 };
+                FlightDetailComponent.prototype.buttonStateDisable = function () {
+                    if (this.errorcode != 0 || this.timeError) {
+                        return true;
+                    }
+                    else
+                        return false;
+                };
                 FlightDetailComponent.prototype.goBack = function (savedFlight) {
                     if (savedFlight === void 0) { savedFlight = null; }
                     // clear f and hide edit flight detail
