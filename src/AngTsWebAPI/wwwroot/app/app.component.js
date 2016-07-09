@@ -50,7 +50,7 @@ System.register(["angular2/core", "./apiservice", "./flightdetails", "angular2/s
                         this.selectedFlight.GateID = f.GateID;
                         this.selectedFlight.Identity = f.Identity;
                         this.selectedFlight.ArrivalTime = f.ArrivalTime;
-                        this.selectedFlight.ArrivalTimeLong = f.ArrivalTimeLong;
+                        //this.selectedFlight.ArrivalTimeLong = f.ArrivalTimeLong;
                         this.selectedFlight.DepartureTime = f.DepartureTime;
                         //this.selectedFlight.DepartureTimeLong = f.DepartureTimeLong;				
                     };
@@ -111,7 +111,7 @@ System.register(["angular2/core", "./apiservice", "./flightdetails", "angular2/s
                 ], AppComponent.prototype, "fldetail", void 0);
                 AppComponent = __decorate([
                     core_1.Component({
-                        selector: "app",
+                        //selector: "startapp",
                         templateUrl: "/app/app.html",
                         directives: [core_directives_1.CORE_DIRECTIVES, flightdetails_1.FlightDetailComponent]
                     }), 

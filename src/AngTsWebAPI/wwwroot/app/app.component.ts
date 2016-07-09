@@ -10,23 +10,22 @@ import {gate} from './model/gate'
 declare var System: any;
 
 @Component({
-    selector: "app",
+    //selector: "startapp",
     templateUrl: "/app/app.html",	
 	directives: [CORE_DIRECTIVES, FlightDetailComponent]
 })
 
 export class AppComponent implements OnInit {
-	constructor(private service: apiflightservice) {
-
+	constructor(
+		private service: apiflightservice) {
 	}
+
 	public flights: flight[];
 	public headers: string[];
 	public selectedFlight: flight;
 	public gates: gate[];
-	public gatefilterid: number;
-
+	public gatefilterid: number;	
 	private timer;
-
 
 	@ViewChild(FlightDetailComponent) fldetail: FlightDetailComponent;
 
@@ -41,7 +40,7 @@ export class AppComponent implements OnInit {
 		this.gatefilterid = -1;
 		this.getflightsJson();
 		
-		this.selectedFlight = null;		
+		this.selectedFlight = null;	
 	}
 
 	getflights() {
@@ -79,7 +78,7 @@ export class AppComponent implements OnInit {
 		this.selectedFlight.GateID = f.GateID;		
 		this.selectedFlight.Identity = f.Identity;
 		this.selectedFlight.ArrivalTime = f.ArrivalTime;
-		this.selectedFlight.ArrivalTimeLong = f.ArrivalTimeLong;
+		//this.selectedFlight.ArrivalTimeLong = f.ArrivalTimeLong;
 		this.selectedFlight.DepartureTime = f.DepartureTime;
 		//this.selectedFlight.DepartureTimeLong = f.DepartureTimeLong;				
 	}

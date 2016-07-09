@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+	<div class="col-md-3">
+		<h1>Component Router</h1>
+		<nav>
+			<ul *ngIf="routes != null" class="nav nav-pills nav-stacked">
+				<li *ngFor="#rt of routes" [class.active]="getLinkStyle(rt)">
+					<a [routerLink]="[rt.name]">{{rt.name}}</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<div class="col-md-9">
+		<router-outlet></router-outlet>
+	</div>
+</body>
+</html>
