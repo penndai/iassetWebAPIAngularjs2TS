@@ -1,5 +1,15 @@
 ﻿<div class="container">
     <h1>Hero Form</h1>
+	<div class="glyphicon-comment alert-info">
+		How to set input control valid/invalid, dirty, untouched class <br/>
+		Step 1: add ngControl directive which automatically add ng-valid, ng-invalid css class <br/>
+		Step 2: in order to do better - display error message div, add reference template variable, set the value to ngForm
+	</div>
+	<div class="glyphicon-comment alert-info">
+		How to set input control valid/invalid, dirty, untouched class NEW API<br/>
+		Step1: using ngModel, not ngControl<br/>
+		Step2: add reference template variable, set the value of variable to ngModel
+	</div>
     <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
       <div class="form-group">
         <label for="name">Name</label>
