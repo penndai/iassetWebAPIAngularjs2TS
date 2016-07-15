@@ -20,6 +20,7 @@ System.register(["angular2/platform/browser", "angular2/router", "angular2/http"
                 startapp_1 = startapp_1_1;
             }],
         execute: function() {
+            //import { disableDeprecatedForms, provideForms } from 'angular2/common';
             browser_1.bootstrap(startapp_1.StartApp, [http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS, apiservice_1.apiflightservice]);
         }
     }

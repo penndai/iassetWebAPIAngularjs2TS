@@ -7,8 +7,7 @@ import {PlaceholdComponent} from './placehold.component';
     selector: "app",
     templateUrl: "/app/startapp.html",
 	directives: [ROUTER_DIRECTIVES]
-	//directives: [CORE_DIRECTIVES, FlightDetailComponent]
-})
+	})
 
 export class StartApp implements OnInit {
 	constructor(private router: Router, private location: Location) { }
